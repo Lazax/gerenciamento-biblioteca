@@ -21,21 +21,23 @@ class AuthRequest extends FormRequest
     {
         return [
             function (Validator $validator) {
-                $user = User::where([
-                    'email' => $validator->safe()->email
-                ])->first();
-        
-                if(!password_verify($validator->safe()->password, $user->password))
-                {
-                    $validator->errors()->add(
-                        'email',
-                        'The e-mail is invalid.'
-                    );
+                if ($validator->errors()->isEmpty()) {
+                    $user = User::where([
+                        'email' => $validator->safe()->email
+                    ])->first();
 
-                    $validator->errors()->add(
-                        'password',
-                        'The password is invalid.'
-                    );
+                    if(!password_verify($validator->safe()->password, $user->password))
+                    {
+                        $validator->errors()->add(
+                            'email',
+                            'The e-mail is invalid.'
+                        );
+
+                        $validator->errors()->add(
+                            'password',
+                            'The password is invalid.'
+                        );
+                    }
                 }
             }
         ];
