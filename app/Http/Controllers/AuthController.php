@@ -14,7 +14,7 @@ class AuthController extends Controller
      * @api {post} /auth/login Realizar login
      * @apiVersion 0.1.0
      * @apiName LoginAuth
-     * @apiGroup Auth
+     * @apiGroup Autenticação
      * @apiDescription Realiza um novo login.
      *
      * @apiParam (JSON) {Email|String{255}} email E-mail do usuario

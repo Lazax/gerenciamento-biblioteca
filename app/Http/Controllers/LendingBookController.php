@@ -18,7 +18,7 @@ class LendingBookController extends Controller
      * @apiPermission Client
      * @apiVersion 0.1.0
      * @apiName IndexLendingBook
-     * @apiGroup LendingBook
+     * @apiGroup Emprestimo
      * @apiDescription Listagem dos emprestimos com paginação. Se o endpoint for utilizado pelo cliente será listado apenas os emprestimos vinculados a ele.
      *
      * @apiParam {Number} page Numero da pagina
@@ -63,7 +63,7 @@ class LendingBookController extends Controller
      * @apiPermission Admin
      * @apiVersion 0.1.0
      * @apiName StoreLendingBook
-     * @apiGroup LendingBook
+     * @apiGroup Emprestimo
      * @apiDescription Cria um novo emprestimo.
      *
      * @apiParam (JSON) {Number} [user_id] ID do usuario que esta realizando o emprestimo

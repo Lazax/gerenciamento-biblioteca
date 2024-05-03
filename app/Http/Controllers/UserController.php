@@ -13,7 +13,7 @@ class UserController extends Controller
      * @apiPermission Admin
      * @apiVersion 0.1.0
      * @apiName IndexUser
-     * @apiGroup User
+     * @apiGroup Usuario
      * @apiDescription Listagem dos usuarios com paginação.
      *
      * @apiParam {Number} page Numero da pagina
@@ -42,7 +42,7 @@ class UserController extends Controller
      * @api {post} /user Criar novo usuario
      * @apiVersion 0.1.0
      * @apiName StoreUser
-     * @apiGroup User
+     * @apiGroup Usuario
      * @apiDescription Cria um novo usuario.
      *
      * @apiParam (JSON) {String{255}} name Nome do usuario

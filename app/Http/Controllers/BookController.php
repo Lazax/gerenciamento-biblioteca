@@ -15,7 +15,7 @@ class BookController extends Controller
      * @apiPermission Client
      * @apiVersion 0.1.0
      * @apiName IndexBook
-     * @apiGroup Book
+     * @apiGroup Livro
      * @apiDescription Listagem dos livros com paginação.
      *
      * @apiParam {Number} page Numero da pagina     
@@ -44,7 +44,7 @@ class BookController extends Controller
      * @apiPermission Admin
      * @apiVersion 0.1.0
      * @apiName StoreBook
-     * @apiGroup Book
+     * @apiGroup Livro
      * @apiDescription Cria um novo livro.
      *
      * @apiParam (JSON) {String{255}} title Nome do livro
@@ -104,7 +104,7 @@ class BookController extends Controller
      * @apiPermission Admin
      * @apiVersion 0.1.0
      * @apiName UpdateBook
-     * @apiGroup Book
+     * @apiGroup Livro
      * @apiDescription Editar um novo livro já existente.
      *
      * @apiParam {Number} id ID do autor
@@ -158,7 +158,7 @@ class BookController extends Controller
      * @apiPermission Admin
      * @apiVersion 0.1.0
      * @apiName DestroyBook
-     * @apiGroup Book
+     * @apiGroup Livro
      * @apiDescription Deletar um novo livro já existente. Os emprestimos relacionados ao livro tambem serão deletados.
      *
      * @apiParam {Number} id ID do livro

@@ -14,7 +14,7 @@ class AuthorController extends Controller
      * @apiPermission Client
      * @apiVersion 0.1.0
      * @apiName IndexAuthor
-     * @apiGroup Author
+     * @apiGroup Autor
      * @apiDescription Listagem dos autores com paginação.
      *
      * @apiParam {Number} page Numero da pagina
@@ -43,7 +43,7 @@ class AuthorController extends Controller
      * @apiPermission Admin
      * @apiVersion 0.1.0
      * @apiName StoreAuthor
-     * @apiGroup Author
+     * @apiGroup Autor
      * @apiDescription Cria um novo autor.
      *
      * @apiParam (JSON) {String{255}} name Nome do autor
@@ -89,7 +89,7 @@ class AuthorController extends Controller
      * @apiPermission Admin
      * @apiVersion 0.1.0
      * @apiName UpdateAuthor
-     * @apiGroup Author
+     * @apiGroup Autor
      * @apiDescription Editar um autor já existente.
      *
      * @apiParam {Number} id ID do autor
@@ -140,7 +140,7 @@ class AuthorController extends Controller
      * @apiPermission Admin
      * @apiVersion 0.1.0
      * @apiName DestroyAuthor
-     * @apiGroup Author
+     * @apiGroup Autor
      * @apiDescription Deletar um autor já existente. Os livros do autor e os emprestimos relacionados ao autor tambem serão deletados.
      *
      * @apiParam {Number} id ID do autor
