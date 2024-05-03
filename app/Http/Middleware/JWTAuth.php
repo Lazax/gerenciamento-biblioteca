@@ -3,35 +3,51 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AuthController;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Auth\Middleware\Authenticate;
 
-class JWTAuth
+class JWTAuth extends Authenticate
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string[]  ...$guards
+     * @return mixed
+     *
+     * @throws \Illuminate\Auth\AuthenticationException
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next, ...$guards)
     {
-        try {
-            if(!$request->hasHeader('Authorization')) throw new \Exception();
-
-            $date = new Carbon();
-            $currentDate = $date->getTimestamp();
-            $payload = AuthController::getPayload();
-
-            if(
-                $currentDate >= $payload->tokenInfo->nbt 
-                && $currentDate < $payload->tokenInfo->exp
-            ) return $next($request);
-
-            throw new \Exception();
-        } catch (\Exception $e) {
+        if($this->authenticate($request, $guards) === false)
+        {
             return response()->json('', 401);
         }
+
+        return $next($request);
+    }
+
+    /**
+     * Determine if the user is logged in to any of the given guards.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $guards
+     * @return void
+     *
+     * @throws \Illuminate\Auth\AuthenticationException
+     */
+    protected function authenticate($request, array $guards)
+    {
+        if (empty($guards)) {
+            $guards = [null];
+        }
+
+        foreach ($guards as $guard) {
+            if ($this->auth->guard($guard)->check()) {
+                return $this->auth->shouldUse($guard);
+            }
+        }
+
+        return false;
     }
 }

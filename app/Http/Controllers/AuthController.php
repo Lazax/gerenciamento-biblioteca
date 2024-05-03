@@ -8,15 +8,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        //
-    }
-
     public function login(AuthRequest $request)
     {
         $user = User::where([
@@ -29,12 +23,6 @@ class AuthController extends Controller
                 'name' => $user->name
             ]
         ]);        
-    }
-
-    public static function getPayload(){
-        if(!request()->hasHeader('Authorization')) return false;
-        
-        return JWT::decode(request()->bearerToken(), new Key(env('JWT_SECRET'), 'HS256'));
     }
 
     private function generateToken($payload = []){
