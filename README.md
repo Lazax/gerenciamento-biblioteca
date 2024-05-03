@@ -51,10 +51,6 @@ Realizar a configuração da chave e do tempo de duração do token JWT. Ambos p
     JWT_TOKEN_DURATION=
     JWT_SECRET=
 
-Gerar o application key
-
-    php artisan key:generate
-
 Rodar o migrations pra criar as tabelas
 
     php artisan migrate
