@@ -25,3 +25,8 @@ Route::prefix('book')->group(function() {
     Route::put('{book}', [BookController::class, 'update'])->name('book.update');
     Route::delete('{id}', [BookController::class, 'destroy'])->name('book.destroy');
 });
+
+Route::prefix('lending_book')->group(function() {
+    Route::get('', [LendingBookController::class, 'index'])->name('lendingBook.index');
+    Route::post('', [LendingBookController::class, 'store'])->name('lendingBook.store');
+});
