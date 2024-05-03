@@ -1,0 +1,10 @@
+{
+    "name": "Gerenciamento de Biblioteca",
+    "version": "0.1.0",
+    "description": "API do sistema de getenciamento da biblioteca",
+    "title": "Gerenciamento de Biblioteca API",
+    "url" : "https://api.github.com/v1",
+    "header": {
+		"filename": "apidocs-header.md"
+	}
+}
