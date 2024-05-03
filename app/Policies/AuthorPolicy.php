@@ -11,7 +11,8 @@ class AuthorPolicy
      */
     public function view(User $user): bool
     {
-        return $user->role == 'admin';
+        return $user->role == 'admin'
+               || $user->role == 'client';
     }
 
     /**
