@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -27,6 +28,27 @@ class UserRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'password' => 'required|max:255'
+        ];
+    }
+
+    public function after(): array
+    {
+        return [
+            function (Validator $validator) {
+                if ($validator->errors()->isEmpty()) {
+                    $user = User::where([
+                        'email' => $validator->safe()->email
+                    ])->first();
+
+                    if(!is_null($user))
+                    {
+                        $validator->errors()->add(
+                            'email',
+                            'Esse e-mail já esta em uso.'
+                        );
+                    }
+                }
+            }
         ];
     }
 

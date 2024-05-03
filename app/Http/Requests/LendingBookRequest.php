@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Book;
+use App\Models\User;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -27,6 +29,34 @@ class LendingBookRequest extends FormRequest
             'user_id' => 'required|integer',
             'book_id' => 'required|integer',
             'return_date' => 'date'
+        ];
+    }
+
+    public function after(): array
+    {
+        return [
+            function (Validator $validator) {
+                if ($validator->errors()->isEmpty()) {
+                    $user = User::whereId($validator->safe()->user_id)->first();
+                    $book = Book::whereId($validator->safe()->book_id)->first();
+
+                    if(is_null($user))
+                    {
+                        $validator->errors()->add(
+                            'user_id',
+                            'O usuario não foi encontrado.'
+                        );
+                    }
+
+                    if(is_null($book))
+                    {
+                        $validator->errors()->add(
+                            'book_id',
+                            'O livro não foi encontrado.'
+                        );
+                    }
+                }
+            }
         ];
     }
 
