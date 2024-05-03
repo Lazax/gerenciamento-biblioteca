@@ -46,9 +46,10 @@ Realizar as configurações para envio de e-mail
     MAIL_USERNAME=
     MAIL_PASSWORD=
 
-Gerar a chave JWT
+Realizar a configuração da chave e do tempo de duração do token JWT. Ambos possuem um valor padrão mas é recomendavel que seja utilizado apenas para desenvolvimento.
 
-    php artisan jwt:secret
+    JWT_TOKEN_DURATION=
+    JWT_SECRET=
 
 Gerar o application key
 
