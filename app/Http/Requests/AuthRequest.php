@@ -26,7 +26,7 @@ class AuthRequest extends FormRequest
                         'email' => $validator->safe()->email
                     ])->first();
 
-                    if(!password_verify($validator->safe()->password, $user->password))
+                    if(is_null($user) || !password_verify($validator->safe()->password, $user->password))
                     {
                         $validator->errors()->add(
                             'email',

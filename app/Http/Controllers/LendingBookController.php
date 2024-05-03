@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LendingBookRequest;
 use App\Mail\LendingBook as MailLendingBook;
 use App\Models\LendingBook;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -95,7 +96,10 @@ class LendingBookController extends Controller
     public function store(LendingBookRequest $request)
     {        
         try {
-            $lendingBook = LendingBook::create($request->all());
+            $date = new Carbon();
+            $lendingBookRequest = $request->all();
+            $lendingBookRequest['loan_date'] = $date->now()->format('Y-m-d');            
+            $lendingBook = LendingBook::create($lendingBookRequest);
             $lendingBook->refresh();
 
             $lendingBook->load([
@@ -105,7 +109,7 @@ class LendingBookController extends Controller
 
             $mail = new MailLendingBook($lendingBook);
 
-            Mail::to('lordlazax@gmail.com')->queue($mail);
+            Mail::to('andreluis.souza@msn.com')->queue($mail);
 
             return response()->json($lendingBook, 201);
         } catch(\Illuminate\Database\QueryException $e){

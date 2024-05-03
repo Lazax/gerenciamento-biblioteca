@@ -31,6 +31,28 @@ class BookRequest extends FormRequest
         ];
     }
 
+    public function after(): array
+    {
+        return [
+            function (Validator $validator) {
+                if ($validator->errors()->isEmpty()) {
+                    $authors = Author::whereIn(
+                        'id',
+                        $validator->safe()->authors
+                    )->get();
+
+                    if(count($authors) < count($validator->safe()->authors))
+                    {
+                        $validator->errors()->add(
+                            'authors',
+                            'O ID de um ou mais autores é invalido.'
+                        );
+                    }
+                }
+            }
+        ];
+    }
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([

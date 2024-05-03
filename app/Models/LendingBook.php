@@ -11,6 +11,7 @@ class LendingBook extends Model
     protected $fillable = [
         'user_id',
         'book_id',
+        'loan_date',
         'return_date'
     ];
     
