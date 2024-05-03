@@ -67,6 +67,11 @@ class JwtGuard implements Guard
         return $this->user;
     }
 
+    public function role(){
+        return $this->user->role;
+    }
+
+
     /**
      * Get the ID for the currently authenticated user.
      *
