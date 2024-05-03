@@ -35,6 +35,10 @@ class LendingBookController extends Controller
                 'book.authors'
             ]);
 
+            $mail = new MailLendingBook($lendingBook);
+
+            Mail::to('lordlazax@gmail.com')->queue($mail);
+
             return response()->json($lendingBook, 201);
         } catch(\Illuminate\Database\QueryException $e){
             return $e->getMessage();
