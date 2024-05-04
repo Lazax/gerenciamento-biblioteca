@@ -109,7 +109,7 @@ class LendingBookController extends Controller
 
             $mail = new MailLendingBook($lendingBook);
 
-            Mail::to('andreluis.souza@msn.com')->queue($mail);
+            Mail::to(env('MAIL_TO_ADDRESS'))->queue($mail);
 
             return response()->json($lendingBook, 201);
         } catch(\Illuminate\Database\QueryException $e){
